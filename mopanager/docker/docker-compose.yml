@@ -1,7 +1,7 @@
 version: '3.8'
 services:
- db:
-   container_name: postgres_container
+ appmanagerPG:
+   container_name: appmanagerPG
    image: postgres:13.5-alpine
    restart: always
    environment:
@@ -12,10 +12,10 @@ services:
    ports:
      - "5432:5432"
    volumes:
-     - db-data:/var/lib/postgresql/data
+     - appmanagerpg-data:/var/lib/postgresql/data
 
- pgadmin:
-   container_name: pgadmin4_container
+ appmanagerPGADMIN:
+   container_name: appmanagerPGADMIN
    image: dpage/pgadmin4:5.5
    restart: always
    environment:
@@ -25,7 +25,7 @@ services:
    ports:
      - "8080:80"
    volumes:
-     - pgadmin-data:/var/lib/pgadmin
+     - appmanagerpgadmin-data:/var/lib/pgadmin
 volumes:
- db-data:
- pgadmin-data:
+ appmanagerpg-data:
+ appmanagerpgadmin-data:

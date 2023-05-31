@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \" docker compose -f ./docker/docker-compose.yml up \" \" next dev  \" ",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -17,6 +17,7 @@
     "bcrypt": "^5.1.0",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
+    "concurrently": "^8.0.1",
     "cookie": "^0.5.0",
     "css-reset-and-normalize": "^2.3.6",
     "eslint": "8.41.0",
