@@ -5,3 +5,7 @@
 * {
   box-sizing: border-box;
 }
+
+.glass {
+    filter: blur(16px) saturate(200%);
+}
