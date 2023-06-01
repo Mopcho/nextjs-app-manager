@@ -1,6 +1,6 @@
-import Image from "next/image";
-import logo from "@/assets/images/logo.png";
-import SidebarLink from "../../SidebarLink/SidebarLink";
+// import Image from "next/image";
+// import logo from "@/assets/images/logo.png";
+import SidebarLink from '../SidebarLink/SidebarLink';
 import Card from "../Card/Card";
 
 const links = [
@@ -16,16 +16,16 @@ const links = [
     icon: "Settings",
     link: "/settings",
   },
-];
+] as const;
 
 const Sidebar = () => {
   return (
     <Card className="h-full w-40 flex items-center justify-between flex-wrap">
-      <div className="w-full flex justify-center items-center">
+      {/* <div className="w-full flex justify-center items-center">
         <Image src={logo} alt="Able logo" priority className="w-14" />
-      </div>
+      </div> */}
       {links.map((link) => (
-        <SidebarLink link={link} />
+        <SidebarLink link={link} key={link.label}/>
       ))}
     </Card>
   );
