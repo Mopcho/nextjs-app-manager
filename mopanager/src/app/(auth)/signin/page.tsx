@@ -1,3 +1,5 @@
 export default function SignIn() {
-    return <div>SignIn</div>;
+    return (<div>
+        <p className="text-black">SignIn</p>
+        </div>);
 }
