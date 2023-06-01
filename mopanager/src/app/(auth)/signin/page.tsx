@@ -1,5 +1,5 @@
-export default function SignIn() {
-    return (<div>
-        <p className="text-black">SignIn</p>
-        </div>);
+import AuthForm from "@/components/AuthForm/AuthForm";
+
+export default function Register() {
+  return <AuthForm mode="signin" />;
 }

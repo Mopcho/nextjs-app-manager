@@ -1,3 +1,5 @@
+import AuthForm from "@/components/AuthForm/AuthForm";
+
 export default function Register() {
-    return <div>Register</div>;
+  return <AuthForm mode="register" />;
 }
