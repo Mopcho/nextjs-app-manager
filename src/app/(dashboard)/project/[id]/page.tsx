@@ -26,6 +26,7 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <div className="h-full overflow-y-auto pr-6 w-full">
+      {/* @ts-ignore */}
       <TaskCard tasks={project?.tasks} title={project?.name || ''} />
     </div>
   );

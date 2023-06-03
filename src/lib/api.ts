@@ -8,14 +8,6 @@ interface FetcherProps {
     json?: boolean;
 }
 
-interface UserRegisterData {
-
-}
-
-interface UserLoginData {
-
-}
-
 const fetcher = async ({ url, method, body, tags, json = true }: FetcherProps) => {
     const res = await fetch(url, {
       method,
@@ -37,7 +29,7 @@ const fetcher = async ({ url, method, body, tags, json = true }: FetcherProps) =
     }
   };
   
-  export const register = async (user: UserRegisterData) => {
+  export const register = async (user: any) => {
     return fetcher({
       url: "/api/register",
       method: "POST",
@@ -46,7 +38,7 @@ const fetcher = async ({ url, method, body, tags, json = true }: FetcherProps) =
     });
   };
   
-  export const signin = async (user: UserLoginData) => {
+  export const signin = async (user: any) => {
     return fetcher({
       url: "/api/signin",
       method: "POST",
@@ -59,6 +51,7 @@ const fetcher = async ({ url, method, body, tags, json = true }: FetcherProps) =
     return fetcher({
       url: "/api/project",
       method: "POST",
+      // @ts-ignore
       body: { name },
     });
   };

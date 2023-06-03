@@ -3,13 +3,6 @@ import { db } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 import { serialize } from "cookie";
 
-interface RegisterData {
-    email: string;
-    firstName: string;
-    lastName: string;
-    password: string;
-}
-
 export async function POST(req: NextRequest) {
     try {
         const { email, firstName, lastName, password } = await req.json();

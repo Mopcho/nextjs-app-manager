@@ -14,7 +14,7 @@ export const comparePasswords = async (plainTextPassword: string, hashedPassword
 }
 
 // TODO: Types here
-export const createJWT = (user) => {
+export const createJWT = (user: any) => {
     // return jwt.sign({ id: user.id }, 'cookies')
     const iat = Math.floor(Date.now() / 1000);
     const exp = iat + 60 * 60 * 24 * 7;
@@ -27,7 +27,7 @@ export const createJWT = (user) => {
       .sign(new TextEncoder().encode(process.env.JWT_SECRET));
   };
 
-  export const validateJWT = async (jwt) => {
+  export const validateJWT = async (jwt: any) => {
     const { payload } = await jwtVerify(
       jwt,
       new TextEncoder().encode(process.env.JWT_SECRET)
@@ -36,7 +36,7 @@ export const createJWT = (user) => {
     return payload.payload as any;
   };
 
-  export const getUserFromCookie = async (cookies) => {
+  export const getUserFromCookie = async (cookies: any) => {
     const jwt = cookies.get(process.env.COOKIE_NAME);
   
     const { id } = await validateJWT(jwt.value);
