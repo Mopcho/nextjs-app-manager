@@ -38,7 +38,7 @@ export default async function Home() {
         </div>
         <div className="flex flex-2 grow items-center flex-wrap mt-3 -m-3 flex-col md:flex-row">
           {projects.map((project) => (
-              <div className="p-3 w-full lg:w-1/3 md:w-1/2" key={project.id}>
+              <div className="px-7 py-3 w-full lg:w-1/3 md:w-1/2" key={project.id}>
                 <Link href={`/project/${project.id}`}>
                   <ProjectCard project={project} />
                 </Link>
