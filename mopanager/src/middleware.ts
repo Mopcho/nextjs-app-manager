@@ -13,7 +13,6 @@ const verifyJWT = async (jwt) => {
 };
 
 export default async function middleware(req: NextRequest) {
-  console.warn('here');
   const { pathname } = req.nextUrl;
   if (
     pathname.startsWith("/_next") ||

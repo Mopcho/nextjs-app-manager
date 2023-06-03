@@ -1,7 +1,10 @@
+// TODO: Types
+
 interface FetcherProps {
     url: string;
     method: string;
     body: string;
+    tags?: string[];
     json?: boolean;
 }
 
@@ -13,7 +16,7 @@ interface UserLoginData {
 
 }
 
-const fetcher = async ({ url, method, body, json = true }: FetcherProps) => {
+const fetcher = async ({ url, method, body, tags, json = true }: FetcherProps) => {
     const res = await fetch(url, {
       method,
       body: body && JSON.stringify(body),
@@ -21,6 +24,7 @@ const fetcher = async ({ url, method, body, json = true }: FetcherProps) => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      next: {tags}
     });
   
     if (!res.ok) {
@@ -48,5 +52,13 @@ const fetcher = async ({ url, method, body, json = true }: FetcherProps) => {
       method: "POST",
       body: user,
       json: false,
+    });
+  };
+
+  export const createNewProject = (name: string) => {
+    return fetcher({
+      url: "/api/project",
+      method: "POST",
+      body: { name },
     });
   };
