@@ -66,10 +66,10 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
           <h2 className="text-3xl mb-2">{content.header}</h2>
           <p className="tex-lg text-black/25">{content.subheader}</p>
         </div>
-        <form onSubmit={handleSubmit} className="py-10 w-full">
+        <form onSubmit={handleSubmit} className="w-full">
           {mode === "register" && (
-            <div className="flex mb-8 justify-between">
-              <div className="pr-2">
+            <div className="flex mb-8 justify-between flex-col sm:flex-row gap-5">
+              <div>
                 <div className="text-lg mb-4 ml-2 text-black/50">
                   First Name
                 </div>
@@ -83,7 +83,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
                   }
                 />
               </div>
-              <div className="pl-2">
+              <div>
                 <div className="text-lg mb-4 ml-2 text-black/50">Last Name</div>
                 <Input
                   required
