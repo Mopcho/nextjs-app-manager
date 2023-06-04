@@ -29,14 +29,14 @@ export default async function Home() {
   const { projects } = await getData();
   return (
     <div className="h-full overflow-y-auto w-full">
-      <div className="h-full items-stretch justify-center min-h-[content]">
+      <div className="h-full items-stretch w-full">
         <div className="flex-1 grow flex w-full">
           <Suspense fallback={<GreetingsSkeleton />}>
             {/* @ts-ignore */}
             <Greetings />
           </Suspense>
         </div>
-        <div className="flex flex-2 grow items-center flex-wrap mt-3 -m-3 flex-col md:flex-row">
+        <div className="flex flex-2 grow items-center flex-wrap mt-3 flex-col md:flex-row">
           {projects.map((project) => (
               <div className="px-7 py-3 w-full lg:w-1/3 md:w-1/2" key={project.id}>
                 <Link href={`/project/${project.id}`}>
