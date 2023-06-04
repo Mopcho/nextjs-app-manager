@@ -52,7 +52,7 @@ export default async function Home() {
         <div className="mt-6 flex-2 grow w-full flex">
           <div className="w-full">
             {/* @ts-ignore */}
-            <TaskCard title="Your next todos !"/>
+            <TaskCard title="Your next todos !" titleClassName="break-words"/>
           </div>
         </div>
       </div>

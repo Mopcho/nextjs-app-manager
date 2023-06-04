@@ -4,6 +4,7 @@ import { TASK_STATUS } from "@prisma/client";
 import { cookies } from "next/headers";
 import { Button } from "../Buttons/Button";
 import Card from "../Card/Card";
+import { cx } from "class-variance-authority";
 
 interface Task {
     id: string;
@@ -14,6 +15,7 @@ interface Task {
 interface Props {
     title: string;
     tasks?: Task[];
+    titleClassName?: string;
 }
 
 const getData = async () => {
@@ -34,14 +36,14 @@ const getData = async () => {
 
   return tasks;
 };
-const TaskCard = async ({ title, tasks }: Props) => {
+const TaskCard = async ({ title, tasks, titleClassName }: Props) => {
   const data = tasks || (await getData());
 
   return (
-    <Card className="flex flex-col md:flex-row lg:flex-row xl:flex-row text-center mx-0 md:mx-5 lg:mx-5 xl:mx-5">
-      <div className="flex justify-between items-center flex-col md:flex-row lg:flex-row xl:flex-row">
+    <Card className="flex flex-col text-center mx-0 md:mx-5 lg:mx-5 xl:mx-5">
+      <div className="flex justify-center items-center flex-col md:flex-row lg:flex-row xl:flex-row flex-wrap">
         <div>
-          <span className="text-3xl text-gray-600">{title}</span>
+          <span className={cx("text-3xl text-gray-600", titleClassName)}>{title}</span>
         </div>
         <div>
           <Button intent="text" className="text-violet-600">

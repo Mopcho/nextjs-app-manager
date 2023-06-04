@@ -25,9 +25,9 @@ export default async function ProjectPage({ params }: Props) {
   const project = await getData(params.id);
 
   return (
-    <div className="h-full overflow-y-auto pr-6 w-full">
+    <div className="h-full overflow-y-auto w-full text-center">
       {/* @ts-ignore */}
-      <TaskCard tasks={project?.tasks} title={project?.name || ''} />
+      <TaskCard tasks={project?.tasks} title={project?.name || ''} titleClassName="break-all md:break-words lg:break-words xl:break-words"/>
     </div>
   );
 }
