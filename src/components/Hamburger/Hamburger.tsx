@@ -37,11 +37,11 @@ export const Hamburger = () => {
 
     const SideMenuContent = () => {
         return (
-            <div className="w-3/4 h-screen absolute right-0 top-0 bg-white p-7 flex flex-col justify-between">
+            <div className="w-3/4 h-[100dvh] absolute right-0 top-0 bg-white p-7 flex flex-col justify-between">
                 <div className="flex flex-col gap-5 w-full">
                     {links.map((link) => <HamburgerLink link={link} key={link.label}/>)}
                 </div>
-                <button onClick={() => closeHamburger()} className="top-0 w-full bg-red-600 py-6 text-white text-3xl flex justify-center items-center"><X size={48} color="white"></X> Close</button>
+                <button onClick={() => closeHamburger()} className="top-0 w-full bg-red-600 py-4 text-white text-3xl flex justify-center items-center"><X size={48} color="white"></X> Close</button>
             </div>
         )
     }
