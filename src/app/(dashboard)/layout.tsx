@@ -20,6 +20,7 @@ export default function DashboardLayout({
           </div>
         </GlassPane>
         <div id='modal'></div>
+        <div id='modal-sidebar'></div>
       </body>
     </html>
     )
