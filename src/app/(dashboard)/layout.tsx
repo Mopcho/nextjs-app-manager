@@ -23,7 +23,7 @@ export default function DashboardLayout({
         </div>
         
         <div id='modal'></div>
-        <div id='modal-sidebar'></div>
+        <div id='modal-sidebar' className='h-full'></div>
       </body>
     </html>
     )
