@@ -2,7 +2,7 @@ import Card from "../Card/Card";
 
 const GreetingsSkeleton = () => {
   return (
-    <Card className="w-full py-14">
+    <Card className="w-full py-14 mx-5">
       <div className="animate-pulse flex space-x-4">
         <div className="rounded-full bg-gray-300 h-10 w-10"></div>
         <div className="flex-1 space-y-6 py-1">
