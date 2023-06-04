@@ -11,7 +11,7 @@ export default function DashboardLayout({
     return (
       <html lang="en">
       <head />
-      <body className="h-[100dvh] w-[100dvw] rainbow-mesh">
+      <body className="h-[100vh] max-w-[100%] w-[100dvw] rainbow-mesh">
         <div className='p-6 h-full w-full'>
         <GlassPane className="p-6 w-full h-full">
           <div className='flex gap-5 w-full h-full items-center flex-col md:flex-row lg:flex-row xl:flex-row'>
