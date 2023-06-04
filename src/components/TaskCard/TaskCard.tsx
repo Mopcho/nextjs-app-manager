@@ -38,14 +38,14 @@ const TaskCard = async ({ title, tasks }: Props) => {
   const data = tasks || (await getData());
 
   return (
-    <Card className="mx-5">
-      <div className="flex justify-between items-center">
+    <Card className="flex flex-col md:flex-row lg:flex-row xl:flex-row text-center mx-0 md:mx-5 lg:mx-5 xl:mx-5">
+      <div className="flex justify-between items-center flex-col md:flex-row lg:flex-row xl:flex-row">
         <div>
           <span className="text-3xl text-gray-600">{title}</span>
         </div>
         <div>
           <Button intent="text" className="text-violet-600">
-            + Create New
+            Create New
           </Button>
         </div>
       </div>
