@@ -31,7 +31,7 @@ const ProjectCard: FC<{ project: ProjectWithTasks }> = ({ project }) => {
         </span>
       </div>
       <div className="mb-6">
-        <span className="text-3xl text-gray-600">{project.name}</span>
+        <span className="text-3xl text-gray-600 break-all">{project.name}</span>
       </div>
       <div className="mb-2">
         <span className="text-gray-400">
