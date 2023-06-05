@@ -5,16 +5,18 @@ import ProjectCard from "@/components/ProjectCard/ProjectCard";
 import TaskCard from "@/components/TaskCard/TaskCard";
 import { getProjects } from "@/lib/api";
 import { getUserFromCookie } from "@/lib/auth";
+import { Project } from "@prisma/client";
 import { cookies, headers } from "next/headers";
 import Link from "next/link";
 import { Suspense } from "react";
 
-const getData = async () => {
+interface GetData {
+  projects: Project[];
+}
+
+const getData = async (): Promise<GetData> => {
   const user = await getUserFromCookie(cookies());
   const authCookie = headers().get('Cookie') || '';
-  if (!authCookie) {
-    return;
-  }
   const data = await getProjects(user?.id || '', authCookie);
 
   return { projects: data.data };
