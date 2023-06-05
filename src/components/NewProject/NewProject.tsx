@@ -4,10 +4,12 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { Button } from "../Buttons/Button";
 import Input from "../Input/Input";
+import { useRouter } from "next/navigation";
 
 Modal.setAppElement("#modal");
 
 const NewProject = () => {
+  const router = useRouter();
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -17,6 +19,7 @@ const NewProject = () => {
     e.preventDefault();
     await createNewProject(name);
     closeModal();
+    router.refresh();
   };
 
   return (

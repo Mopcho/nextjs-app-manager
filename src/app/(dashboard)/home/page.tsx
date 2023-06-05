@@ -3,26 +3,21 @@ import GreetingsSkeleton from "@/components/GreetingsSkeleton/GreetingsSkeleton"
 import NewProject from "@/components/NewProject/NewProject";
 import ProjectCard from "@/components/ProjectCard/ProjectCard";
 import TaskCard from "@/components/TaskCard/TaskCard";
-import { delay } from "@/lib/async";
+import { getProjects } from "@/lib/api";
 import { getUserFromCookie } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import Link from "next/link";
 import { Suspense } from "react";
 
 const getData = async () => {
-  // await delay(2000);
   const user = await getUserFromCookie(cookies());
-  const projects = await db.project.findMany({
-    where: {
-      ownerId: user?.id,
-    },
-    include: {
-      tasks: true,
-    },
-  });
+  const authCookie = headers().get('Cookie') || '';
+  if (!authCookie) {
+    return;
+  }
+  const data = await getProjects(user?.id || '', authCookie);
 
-  return { projects };
+  return { projects: data.data };
 };
 
 export default async function Home() {
@@ -37,7 +32,7 @@ export default async function Home() {
           </Suspense>
         </div>
         <div className="flex flex-2 grow items-center flex-wrap mt-3 flex-col md:flex-row">
-          {projects.map((project) => (
+          {projects && projects.map((project: any) => (
               <div className="px-7 py-3 w-full lg:w-1/3 md:w-1/2" key={project.id}>
                 <Link href={`/project/${project.id}`}>
                   <ProjectCard project={project} />
