@@ -1,6 +1,6 @@
 "use client";
 import { register, signin } from "@/lib/api";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Card from "../Card/Card";
@@ -111,6 +111,14 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
   };
 
   const content = mode === "register" ? registerContent : signinContent;
+
+  useEffect(() => {
+    if (apiError) {
+      setTimeout(() => {
+        setApiError('');
+      }, 3000);
+    }
+  }, [apiError]);
 
   return (
     <Card className="">
