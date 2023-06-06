@@ -11,8 +11,11 @@ interface Props {
 
 const getData = async (id: string) => {
   const user = await getUserFromCookie(cookies());
+  if (!user) {
+    return;
+  }
   const project = await db.project.findFirst({
-    where: { id, ownerId: user?.id },
+    where: { id, ownerId: user.id },
     include: {
       tasks: true,
     },
