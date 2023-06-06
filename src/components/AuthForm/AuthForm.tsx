@@ -116,7 +116,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
     if (apiError) {
       setTimeout(() => {
         setApiError('');
-      }, 3000);
+      }, 5000);
     }
   }, [apiError]);
 
@@ -205,7 +205,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
               </Button>
             </div>
           </div>
-          {apiError ? (<div className="flex justify-center items-center w-full p-5">
+          {apiError ? (<div className="flex justify-center items-center w-full p-5 slide-from-left">
             <span className="border-2 border-black text-white bg-red-500 rounded-lg w-full text-center p-3 flex justify-center items-center gap-3"><AlertTriangle />{apiError}</span>
           </div>) : null}
         </form>
