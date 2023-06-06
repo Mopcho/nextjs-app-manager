@@ -6,6 +6,15 @@ import { serialize } from "cookie";
 export async function POST(req: NextRequest) {
     try {
         const { email, firstName, lastName, password } = await req.json();
+        const userAlreadyExists = await db.user.findUnique({
+            where: {
+                email
+            }
+        });
+
+        if (userAlreadyExists) {
+            throw new Error('User already exists');
+        }
         const user = await db.user.create({
             data: {
                 email,
@@ -26,6 +35,10 @@ export async function POST(req: NextRequest) {
             }
         })
     } catch(err) {
-        console.error(err);
+        if (err instanceof Error) {
+            return NextResponse.json({error: err.message})
+        } else {
+            return NextResponse.json({error: err})
+        }
     }
 }

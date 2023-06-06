@@ -44,16 +44,21 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
   
     if (json) {
       const data = await res.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
       return data;
     }
   };
   
   export const register = async (user: any) => {
-    return fetcher({
+    return await fetcher({
       url: "/api/register",
       method: "POST",
       body: user,
-      json: false,
+      json: true,
     });
   };
   
