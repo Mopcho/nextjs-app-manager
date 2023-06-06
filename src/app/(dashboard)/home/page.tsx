@@ -10,20 +10,19 @@ import { cookies, headers } from "next/headers";
 import Link from "next/link";
 import { Suspense } from "react";
 
-interface GetData {
-  projects: Project[];
-}
-
-const getData = async (): Promise<GetData> => {
+const getData = async (): Promise<Project[] | undefined> => {
   const user = await getUserFromCookie(cookies());
-  const authCookie = headers().get('Cookie') || '';
-  const data = await getProjects(user?.id || '', authCookie);
+  const authCookie = headers().get('Cookie');
+  if (!user || !authCookie) {
+    return;
+  }
+  const data = await getProjects(user.id, authCookie);
 
-  return { projects: data.data };
+  return data.data;
 };
 
 export default async function Home() {
-  const { projects } = await getData();
+  const projects = await getData();
   return (
     <div className="h-full overflow-y-auto w-full">
       <div className="h-full items-stretch w-full">
