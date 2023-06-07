@@ -23,13 +23,18 @@ export interface ToastChild {
 const ToastContainer: React.FC<Props> = ({autoCLose}) => {
   const {toasts, setToasts} = useContext(ToastContext);
 
+  /** BUG */
+  const removeToast = (id: number) => {
+    // const newToasts = toasts.filter(filterToast => filterToast.id !== id);
+    setToasts(oldToasts => oldToasts.filter(filterToast => filterToast.id !== id));
+  }
+
   useEffect(() => {
     toasts.map((toast) => {
       if (!toast.timer) {
         const newTimer = new Timeout(() => {
           // Remove the toast after some time
-          const newToasts = toasts.filter(filterToast => filterToast.id !== toast.id);
-          setToasts(oldToasts => newToasts);
+          removeToast(toast.id);
         }, 5000);
 
         // Populate the current toast's timer with the one we created
