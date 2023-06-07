@@ -5,21 +5,33 @@ import Modal from "react-modal";
 import { Button } from "../Buttons/Button";
 import Input from "../Input/Input";
 import { useRouter } from "next/navigation";
+import { getErrorMessage } from "@/lib/utils";
+import { useToast } from "../ToastContainer/ToastContainer";
 
 Modal.setAppElement("#modal");
 
 const NewProject = () => {
+  const {triggerToast} = useToast();
   const router = useRouter();
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [apiError, setApiError] = useState<string | null>(null);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
   const [name, setName] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await createNewProject(name);
-    closeModal();
-    router.refresh();
+    try {
+      e.preventDefault();
+      await createNewProject(name);
+      closeModal();
+      triggerToast('Created successfully', 5000, 'CheckCircle');
+      router.refresh();
+    } catch(err) {
+      closeModal();
+      const errorMessage = getErrorMessage(err);
+      setApiError(errorMessage);
+      triggerToast(errorMessage, 5000, 'AlertTriangle');
+    }
   };
 
   return (

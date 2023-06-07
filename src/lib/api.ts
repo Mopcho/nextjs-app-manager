@@ -71,8 +71,8 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
     });
   };
 
-  export const createNewProject = (name: string) => {
-    return fetcher({
+  export const createNewProject = async (name: string) => {
+    return await fetcher({
       url: "/api/project",
       method: "POST",
       // @ts-ignore

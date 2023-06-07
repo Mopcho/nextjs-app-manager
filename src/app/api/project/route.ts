@@ -7,6 +7,19 @@ export async function POST(req: NextRequest) {
         const { name } = await req.json();
         const cookieName = process.env.COOKIE_NAME || '';
         const user = await validateJWT(req.cookies.get(cookieName)?.value);
+
+        const projectExists = await db.project.findUnique({
+          where: {
+            ownerId_name: {
+              ownerId: user.id,
+              name
+            }
+          }
+        });
+
+        if (projectExists) {
+          throw new Error('Project with this name already exists');
+        }
       
         await db.project.create({
           data: {
@@ -17,8 +30,11 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({ data: { message: "ok" } });
     } catch(err) {
-        console.error(err);
-        return NextResponse.json({ error: { message: err } });
+      if (err instanceof Error) {
+        return NextResponse.json({error: err.message})
+      } else {
+        return NextResponse.json({error: err})
+      }
     }
 }
 
