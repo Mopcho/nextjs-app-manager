@@ -1,6 +1,6 @@
 'use client';
 
-import { MouseEventHandler, useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { ToastContext } from "./ToastProvider/ToastProvidet";
 import { Timeout } from "@/lib/utils";
 import { AlertTriangle, CheckCircle, Bell, Eye } from "react-feather";
