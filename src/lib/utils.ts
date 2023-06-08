@@ -53,3 +53,11 @@ export class Timeout {
       clearTimeout(this.timeout);
   }
 }
+
+const IS_SERVER = typeof window === "undefined";
+export default function getURL(path: string) {
+  const baseURL = IS_SERVER
+    ? process.env.SERVER_URL!
+    : window.location.origin;
+  return new URL(path, baseURL).toString();
+}

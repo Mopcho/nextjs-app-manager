@@ -1,3 +1,5 @@
+import getURL from "./utils";
+
 interface FetcherProps {
     url: string;
     method: string;
@@ -78,7 +80,7 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
 
   export const getProjects = async (ownerId: string, authCookie: string) => {
     return await fetcher({
-      url: `${process.env.SERVER_URL}/api/project?ownerId=${ownerId}`,
+      url: getURL(`/api/project?ownerId=${ownerId}`),
       method: "GET",
       // @ts-ignore
       tags: ['projects'],
