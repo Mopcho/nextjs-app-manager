@@ -1,7 +1,3 @@
-// TODO: Types
-
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
-
 interface FetcherProps {
     url: string;
     method: string;
@@ -55,7 +51,7 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
   
   export const register = async (user: any) => {
     return await fetcher({
-      url: "/api/register",
+      url: `${process.env.SERVER_URL}/api/register`,
       method: "POST",
       body: user,
       json: true,
@@ -64,7 +60,7 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
   
   export const signin = async (user: any) => {
     return await fetcher({
-      url: "/api/signin",
+      url: `${process.env.SERVER_URL}/api/signin`,
       method: "POST",
       body: user,
       json: false,
@@ -73,7 +69,7 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
 
   export const createNewProject = async (name: string) => {
     return await fetcher({
-      url: "/api/project",
+      url: `${process.env.SERVER_URL}/api/project`,
       method: "POST",
       // @ts-ignore
       body: { name },
@@ -82,7 +78,7 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
 
   export const getProjects = async (ownerId: string, authCookie: string) => {
     return await fetcher({
-      url: `https://nextjs-app-manager.vercel.app/api/project?ownerId=${ownerId}`,
+      url: `${process.env.SERVER_URL}/api/project?ownerId=${ownerId}`,
       method: "GET",
       // @ts-ignore
       tags: ['projects'],
