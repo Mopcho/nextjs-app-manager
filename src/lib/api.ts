@@ -82,7 +82,7 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
 
   export const getProjects = async (ownerId: string, authCookie: string) => {
     return await fetcher({
-      url: `http://localhost:3000/api/project?ownerId=${ownerId}`,
+      url: `https://localhost:3000/api/project?ownerId=${ownerId}`,
       method: "GET",
       // @ts-ignore
       tags: ['projects'],
