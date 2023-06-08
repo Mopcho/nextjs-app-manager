@@ -53,7 +53,7 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
   
   export const register = async (user: any) => {
     return await fetcher({
-      url: `${process.env.SERVER_URL}/api/register`,
+      url: getURL(`/api/register`),
       method: "POST",
       body: user,
       json: true,
@@ -62,7 +62,7 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
   
   export const signin = async (user: any) => {
     return await fetcher({
-      url: `${process.env.SERVER_URL}/api/signin`,
+      url: getURL(`/api/signin`),
       method: "POST",
       body: user,
       json: false,
@@ -71,7 +71,7 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
 
   export const createNewProject = async (name: string) => {
     return await fetcher({
-      url: `${process.env.SERVER_URL}/api/project`,
+      url: getURL(`/api/project`),
       method: "POST",
       // @ts-ignore
       body: { name },
