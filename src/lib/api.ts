@@ -63,7 +63,7 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
   };
   
   export const signin = async (user: any) => {
-    return fetcher({
+    return await fetcher({
       url: "/api/signin",
       method: "POST",
       body: user,
@@ -80,8 +80,8 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
     });
   };
 
-  export const getProjects = (ownerId: string, authCookie: string) => {
-    return fetcher({
+  export const getProjects = async (ownerId: string, authCookie: string) => {
+    return await fetcher({
       url: `http://localhost:3000/api/project?ownerId=${ownerId}`,
       method: "GET",
       // @ts-ignore
