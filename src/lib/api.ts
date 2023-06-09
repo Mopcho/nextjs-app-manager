@@ -88,3 +88,18 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
     });
   };
 
+  interface TaskCreateData {
+    name: string,
+    description: string,
+    status: string,
+    projectId: string,
+  }
+
+  export const createNewTask = async ({name, description, status, projectId}: TaskCreateData) => {
+    return await fetcher({
+      url: getURL(`/api/task`),
+      method: "POST",
+      // @ts-ignore
+      body: { name, description, status, projectId },
+    });
+  };

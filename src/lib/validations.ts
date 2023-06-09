@@ -38,3 +38,21 @@ export const validatePassword = (value: string) => {
         return 'Password must contain at least one number'
     }
 }
+
+export const validateTaskName = (value: string) => {
+    if (value.length < 6) {
+        return 'Task name must be at least 6 characters';
+    }
+}
+
+export const validateDescription = (value: string) => {
+    if (value.length < 10) {
+        return 'Task description must be at least 6 characters';
+    }
+}
+
+export const validateStatus = (value: string) => {
+    if (value !== 'NOT_STARTED' && value !== 'STARTED' && value !== 'COMPLETED') {
+        return 'Task status must be NOT_STARTED or STARTED or COMPLETED';
+    }
+}

@@ -30,7 +30,7 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <div className="h-full overflow-y-auto w-full text-center">
       {/* @ts-ignore */}
-      <TaskCard tasks={project?.tasks} title={project?.name || ''} titleClassName="break-all md:break-words lg:break-words xl:break-words"/>
+      <TaskCard tasks={project?.tasks} title={project?.name || ''} projectId={project?.id} titleClassName="break-all md:break-words lg:break-words xl:break-words"/>
     </div>
   );
 }

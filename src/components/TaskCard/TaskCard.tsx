@@ -2,9 +2,9 @@ import { getUserFromCookie } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { TASK_STATUS } from "@prisma/client";
 import { cookies } from "next/headers";
-import { Button } from "../Buttons/Button";
 import Card from "../Card/Card";
 import { cx } from "class-variance-authority";
+import NewTask from "../NewTask/NewTask";
 
 interface Task {
     id: string;
@@ -16,6 +16,7 @@ interface Props {
     title: string;
     tasks?: Task[];
     titleClassName?: string;
+    projectId: string;
 }
 
 const getData = async () => {
@@ -36,7 +37,7 @@ const getData = async () => {
 
   return tasks;
 };
-const TaskCard = async ({ title, tasks, titleClassName }: Props) => {
+const TaskCard = async ({ title, tasks, titleClassName, projectId }: Props) => {
   const data = tasks || (await getData());
 
   return (
@@ -46,9 +47,7 @@ const TaskCard = async ({ title, tasks, titleClassName }: Props) => {
           <span className={cx("text-3xl text-gray-600", titleClassName)}>{title}</span>
         </div>
         <div>
-          <Button intent="text" className="text-violet-600">
-            Create New
-          </Button>
+          <NewTask projectId={projectId}></NewTask>
         </div>
       </div>
       <div>
