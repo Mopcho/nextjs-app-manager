@@ -100,8 +100,10 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
 
     setFormState((prevValues) => {
       const updatedValues = { ...prevValues, [name]: value };
-      const errors = validate(updatedValues);
-      setFormErrors(errors);
+      if (mode === 'register') {
+        const errors = validate(updatedValues);
+        setFormErrors(errors);
+      }
       return updatedValues;
     });
   }
