@@ -1,6 +1,6 @@
 "use client";
-import { createNewProject, createNewTask } from "@/lib/api";
-import { ChangeEvent, useState } from "react";
+import { createNewTask } from "@/lib/api";
+import { useState } from "react";
 import Modal from "react-modal";
 import { Button } from "../Buttons/Button";
 import Input from "../Input/Input";

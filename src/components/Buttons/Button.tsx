@@ -30,6 +30,15 @@ const buttonClasses = cva(
             "border-2",
             "border-gray-800",
           ],
+          delete: [
+            "bg-white",
+            "text-red",
+            "hover:bg-red-300",
+            "border-solid",
+            "border-2",
+            "border-red-300",
+            "shadow-[0_0_5px_#333]",
+          ],
           text: ["bg-transparent", "text-black", "hover:bg-gray-100"],
         },
         size: {

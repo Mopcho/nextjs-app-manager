@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import Card from "../Card/Card";
 import { cx } from "class-variance-authority";
 import NewTask from "../NewTask/NewTask";
+import DeleteProject from "../DeleteProject/DeleteProject";
 
 interface Task {
     id: string;
@@ -42,12 +43,13 @@ const TaskCard = async ({ title, tasks, titleClassName, projectId }: Props) => {
 
   return (
     <Card className="flex flex-col text-center mx-0 md:mx-5 lg:mx-5 xl:mx-5">
-      <div className="flex justify-center items-center flex-col md:flex-row lg:flex-row xl:flex-row flex-wrap">
+      <div className="flex justify-center items-center flex-col md:flex-col lg:flex-col xl:flex-col flex-wrap">
         <div>
           <span className={cx("text-3xl text-gray-600", titleClassName)}>{title}</span>
         </div>
-        <div>
+        <div className="flex items-center justify-center">
           <NewTask projectId={projectId}></NewTask>
+          <DeleteProject projectId={projectId} projectName={title}></DeleteProject>
         </div>
       </div>
       <div>

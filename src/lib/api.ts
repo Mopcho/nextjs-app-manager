@@ -103,3 +103,14 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
       body: { name, description, status, projectId },
     });
   };
+
+  interface ProjectDeleteData {
+    projectId: string;
+  }
+
+  export const deleteProject = async ({projectId}: ProjectDeleteData) => {
+    return await fetcher({
+      url: getURL(`/api/project?projectId=${projectId}`),
+      method: "DELETE",
+    });
+  };
