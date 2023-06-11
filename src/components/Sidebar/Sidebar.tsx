@@ -2,6 +2,7 @@
 // import logo from "@/assets/images/logo.png";
 import SidebarLink from '../SidebarLink/SidebarLink';
 import Card from "../Card/Card";
+import LogoutButton from '../LogoutButton/LogoutButton';
 
 const links = [
   { label: "Home", icon: "Grid", link: "/home" },
@@ -15,18 +16,16 @@ const links = [
     label: "Settings",
     icon: "Settings",
     link: "/settings",
-  },
+  }
 ] as const;
 
 const Sidebar = () => {
   return (
     <Card className="h-full w-40 items-center justify-between flex-wrap hidden lg:flex md:flex xl:flex">
-      {/* <div className="w-full flex justify-center items-center">
-        <Image src={logo} alt="Able logo" priority className="w-14" />
-      </div> */}
       {links.map((link) => (
         <SidebarLink link={link} key={link.label}/>
       ))}
+      <LogoutButton></LogoutButton>
     </Card>
   );
 };

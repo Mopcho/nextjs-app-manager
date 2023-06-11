@@ -114,3 +114,10 @@ const fetcher = async ({ url, method, body, tags, cookie, json = true }: Fetcher
       method: "DELETE",
     });
   };
+
+  export const logoutUser = async () => {
+    return await fetcher({
+      url: getURL(`/api/logout`),
+      method: "GET",
+    });
+  };
