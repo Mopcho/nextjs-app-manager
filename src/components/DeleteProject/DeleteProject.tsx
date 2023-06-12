@@ -49,9 +49,9 @@ const DeleteProject: React.FC<Props> = ({ projectId, projectName }) => {
     }
     return (
         <div>
-            <Button intent={'delete'} onClick={() => openModal()} className="flex gap-2">
+            {projectId && (<Button intent={'delete'} onClick={() => openModal()} className="flex gap-2">
                 <Trash></Trash> Delete Project
-            </Button>
+            </Button>)}
             <Modal 
                 onRequestClose={closeModal} 
                 isOpen={modalIsOpen}         
