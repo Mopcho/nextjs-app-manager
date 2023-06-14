@@ -145,6 +145,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
                   onBlur={handleBlur}
                   onChange={handleChange}
                   autoComplete="given-name"
+                  aria-required
                 />
                 {touched.firstName ? <span className="text-red-500 max-w-[99%] block">{formErrors.firstName}</span> : null}
               </div>
@@ -159,6 +160,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
                   onBlur={handleBlur}
                   onChange={handleChange}
                   autoComplete="family-name"
+                  aria-required
                 />
                 {touched.lastName ? <span className="text-red-500 max-w-[99%] block">{formErrors.lastName}</span> : null}
               </div>
@@ -176,6 +178,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
               onBlur={handleBlur}
               onChange={handleChange}
               autoComplete="username"
+              aria-required
             />
             {touched.email ? <span className="text-red-500 max-w-[99%] block">{formErrors.email}</span> : null}
           </div>
@@ -191,6 +194,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
               onBlur={handleBlur}
               onChange={handleChange}
               autoComplete={mode === 'register' ? 'new-password' : 'current-password'}
+              aria-required
             />
             {touched.password ? <span className="text-red-500 max-w-[99%] block">{formErrors.password}</span> : null}
           </div>
