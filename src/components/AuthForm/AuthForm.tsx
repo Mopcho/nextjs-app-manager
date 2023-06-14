@@ -133,9 +133,9 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
           {mode === "register" && (
             <div className="flex mb-8 justify-between flex-col sm:flex-row gap-5">
               <div>
-                <div className="text-lg mb-4 ml-2 text-black/50">
+                <label htmlFor="firstName" className="block text-lg mb-4 ml-2 text-black/50">
                   First Name
-                </div>
+                </label>
                 <Input
                   required
                   placeholder="First Name"
@@ -149,7 +149,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
                 {touched.firstName ? <span className="text-red-500 max-w-[99%] block">{formErrors.firstName}</span> : null}
               </div>
               <div>
-                <div className="text-lg mb-4 ml-2 text-black/50">Last Name</div>
+                <label htmlFor="lastName" className="block text-lg mb-4 ml-2 text-black/50">Last Name</label>
                 <Input
                   required
                   placeholder="Last Name"
@@ -165,7 +165,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
             </div>
           )}
           <div className="mb-8">
-            <div className="text-lg mb-4 ml-2 text-black/50">Email</div>
+            <label htmlFor="email" className="block text-lg mb-4 ml-2 text-black/50">Email</label>
             <Input
               required
               type="email"
@@ -180,7 +180,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
             {touched.email ? <span className="text-red-500 max-w-[99%] block">{formErrors.email}</span> : null}
           </div>
           <div className="mb-8">
-            <div className="text-lg mb-4 ml-2 text-black/50">Password</div>
+            <label htmlFor="password" className="block text-lg mb-4 ml-2 text-black/50">Password</label>
             <Input
               value={formState.password}
               required
