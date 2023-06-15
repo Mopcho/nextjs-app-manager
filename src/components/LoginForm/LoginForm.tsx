@@ -1,5 +1,5 @@
 "use client";
-import { register, signin } from "@/lib/api";
+import { signin } from "@/lib/api";
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,26 +10,10 @@ import {validateEmail, validateFirstName, validateLastName, validatePassword} fr
 import {getErrorMessage} from '@/lib/utils';
 import { AlertTriangle } from "react-feather";
 
-const registerContent = {
-  linkUrl: "/signin",
-  linkText: "Already have an account?",
-  header: "Create a new Account",
-  subheader: "Just a few things to get started",
-  buttonText: "Register",
-};
-
-const signinContent = {
-  linkUrl: "/register",
-  linkText: "Don't have an account?",
-  header: "Welcome Back",
-  subheader: "Enter your credentials to access your account",
-  buttonText: "Sign In",
-};
-
 const initial = { email: "", password: "", firstName: "", lastName: "" };
 const initialTouched = { email: false, password: false, firstName: false, lastName: false };
 
-export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
+export default function LoginForm() {
   const [formState, setFormState] = useState({ ...initial });
 
   type FormState = typeof formState;
@@ -38,8 +22,6 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
   const [formErrors, setFormErrors] = useState<ErrorState>({...initial});
   const [touched, setTouched] = useState(initialTouched);
   const [apiError, setApiError] = useState("");
-
-
 
   const router = useRouter();
   const handleSubmit = useCallback(
@@ -51,12 +33,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
       }
 
       try {
-        if (mode === "register") {
-          await register(formState);
-        } else {
-          await signin(formState);
-        }
-
+        await signin(formState);
         router.replace("/home");
       } catch (e: unknown) {
         const errorWithMessage = getErrorMessage(e);
@@ -65,7 +42,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
         setFormState({ ...initial });
       }
     },
-    [formState, mode, router]
+    [formState, router]
   );
 
   const validate = (values: FormState) => {
@@ -100,10 +77,6 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
 
     setFormState((prevValues) => {
       const updatedValues = { ...prevValues, [name]: value };
-      if (mode === 'register') {
-        const errors = validate(updatedValues);
-        setFormErrors(errors);
-      }
       return updatedValues;
     });
   }
@@ -111,8 +84,6 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
   const handleBlur = (ev: React.FocusEvent<HTMLInputElement>) => {
     setTouched({ ...touched, [ev.currentTarget.name]: true });
   };
-
-  const content = mode === "register" ? registerContent : signinContent;
 
   useEffect(() => {
     if (apiError) {
@@ -126,46 +97,10 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
     <Card className="">
       <div className="w-full">
         <div className="text-center">
-          <h2 className="text-3xl mb-2">{content.header}</h2>
-          <p className="tex-lg text-black/25">{content.subheader}</p>
+          <h2 className="text-3xl mb-2">Welcome Back</h2>
+          <p className="tex-lg text-black/25">Enter your credentials to access your account</p>
         </div>
         <form onSubmit={handleSubmit} className="w-full">
-          {mode === "register" && (
-            <div className="flex mb-8 justify-between flex-col sm:flex-row gap-5">
-              <div>
-                <label htmlFor="firstName" className="block text-lg mb-4 ml-2 text-black/50">
-                  First Name
-                </label>
-                <Input
-                  required
-                  placeholder="First Name"
-                  value={formState.firstName}
-                  name="firstName"
-                  className="border-solid border-gray border-2 px-6 py-2 text-lg rounded-3xl w-full"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  autoComplete="given-name"
-                  aria-required
-                />
-                {touched.firstName ? <span className="text-red-500 max-w-[99%] block">{formErrors.firstName}</span> : null}
-              </div>
-              <div>
-                <label htmlFor="lastName" className="block text-lg mb-4 ml-2 text-black/50">Last Name</label>
-                <Input
-                  required
-                  placeholder="Last Name"
-                  name="lastName"
-                  value={formState.lastName}
-                  className="border-solid border-gray border-2 px-6 py-2 text-lg rounded-3xl w-full"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  autoComplete="family-name"
-                  aria-required
-                />
-                {touched.lastName ? <span className="text-red-500 max-w-[99%] block">{formErrors.lastName}</span> : null}
-              </div>
-            </div>
-          )}
           <div className="mb-8">
             <label htmlFor="email" className="block text-lg mb-4 ml-2 text-black/50">Email</label>
             <Input
@@ -193,7 +128,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
               className="border-solid border-gray border-2 px-6 py-2 text-lg rounded-3xl w-full"
               onBlur={handleBlur}
               onChange={handleChange}
-              autoComplete={mode === 'register' ? 'new-password' : 'current-password'}
+              autoComplete='current-password'
               aria-required
             />
             {touched.password ? <span className="text-red-500 max-w-[99%] block">{formErrors.password}</span> : null}
@@ -202,16 +137,16 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
             <div>
               <span>
                 <Link
-                  href={content.linkUrl}
+                  href="/register"
                   className="text-blue-600 font-bold"
                 >
-                  {content.linkText}
+                  Don&apos;t have an account?
                 </Link>
               </span>
             </div>
             <div>
               <Button type="submit" intent="secondary">
-                {content.buttonText}
+                Sign In
               </Button>
             </div>
           </div>
